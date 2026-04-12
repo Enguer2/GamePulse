@@ -8,3 +8,14 @@ services:
       - .:/app
     env_file:
       - .env
+
+  backend:
+    build: 
+      context: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+    env_file:
+      - .env
