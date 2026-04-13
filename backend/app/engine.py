@@ -35,11 +35,8 @@ Return ONLY a valid JSON array of {n_queries} strings. No preamble, no explanati
         print(f"⚠️ Mistral error: {e}")
         return [user_query]
 
-def build_where_clause(required_tags: list[str] = None, max_price: float = None) -> dict | None:
+def build_where_clause(max_price: float = None) -> dict | None:
     conditions = []
-    if required_tags:
-        tag_filters = [{"Tags": {"$contains": t}} for t in required_tags]
-        conditions.append({"$or": tag_filters} if len(tag_filters) > 1 else tag_filters[0])
     if max_price is not None:
         conditions.append({"Price": {"$lte": str(max_price)}})
     if not conditions: return None
@@ -54,10 +51,15 @@ def gamepulse_search(user_query: str, collection, mistral_api_key: str = None,
                      required_tags: list[str] = None, max_price: float = None, 
                      use_reranker: bool = True, top_k: int = 5) -> list[dict]:
     
-    queries = expand_query_with_mistral(user_query, mistral_api_key) if mistral_api_key else [user_query]
-    where_clause = build_where_clause(required_tags, max_price)
+    search_intent = user_query
+    if required_tags:
+        tags_string = ", ".join(required_tags)
+        search_intent = f"{user_query} (Must strongly relate to: {tags_string})"
+        
+    queries = expand_query_with_mistral(search_intent, mistral_api_key) if mistral_api_key else [search_intent]
+    where_clause = build_where_clause(max_price)
     
-    n_candidates = max(top_k * 4, 20)
+    n_candidates = max(top_k * 10, 50) if required_tags else max(top_k * 4, 20)
     rrf_scores = defaultdict(float)
     game_store = {}
     
@@ -69,6 +71,12 @@ def gamepulse_search(user_query: str, collection, mistral_api_key: str = None,
         if not results['ids'][0]: continue
 
         for rank, (doc_id, metadata, document) in enumerate(zip(results['ids'][0], results['metadatas'][0], results['documents'][0])):
+            
+            if required_tags:
+                db_tags = str(metadata.get('Tags', '')).lower()
+                if not any(tag.lower() in db_tags for tag in required_tags):
+                    continue
+            
             rrf_scores[doc_id] += 1.0 / (60 + rank + 1)
             game_store[doc_id] = (metadata, document)
 
@@ -77,18 +85,30 @@ def gamepulse_search(user_query: str, collection, mistral_api_key: str = None,
     top_ids = sorted(rrf_scores, key=rrf_scores.get, reverse=True)[:n_candidates]
     
     if use_reranker:
-        pairs = [(user_query, game_store[doc_id][1]) for doc_id in top_ids]
+        pairs = [(search_intent, game_store[doc_id][1]) for doc_id in top_ids]
         scores = reranker.predict(pairs)
         ranked = sorted(zip(scores, top_ids), key=lambda x: x[0], reverse=True)[:top_k]
         
-        return [{
-            "name": game_store[doc_id][0].get('Name', 'Inconnu'), 
-            "price": str(game_store[doc_id][0].get('Price', '0.0')), 
-            "tags": game_store[doc_id][0].get('Tags', 'N/A'), 
-            "score": sigmoid_percentage(float(score)),
-            "description": game_store[doc_id][1].split("DESC: ")[-1][:200]
-            "app_id": game_store[doc_id][0].get('AppID'), 
-            "header_image": game_store[doc_id][0].get('Header image')
-        } for score, doc_id in ranked]
+        results_to_return = []
+        for score, doc_id in ranked:
+            metadata = game_store[doc_id][0]
+            
+            app_id = metadata.get('AppID') or metadata.get('app_id')
+            
+            header_image = metadata.get('Header image')
+            if not header_image and app_id:
+                header_image = f"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/{app_id}/header.jpg"
+
+            results_to_return.append({
+                "name": metadata.get('Name', 'Inconnu'), 
+                "price": str(metadata.get('Price', '0.0')), 
+                "tags": str(metadata.get('Tags', 'N/A')), 
+                "score": sigmoid_percentage(float(score)),
+                "description": game_store[doc_id][1].split("DESC: ")[-1][:200],
+                "app_id": int(app_id) if app_id else None, 
+                "header_image": header_image
+            })
+            
+        return results_to_return
     
     return []
