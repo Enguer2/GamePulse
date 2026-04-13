@@ -14,6 +14,8 @@ class GameResponse(BaseModel):
     tags: str
     score: str
     description: str
+    app_id: Optional[int] = None
+    header_image: Optional[str] = None
 
 class SearchResult(BaseModel):
     results: List[GameResponse]
