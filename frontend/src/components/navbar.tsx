@@ -2,9 +2,9 @@ import Image from "next/image";
 
 const NAV_LINKS = [
   { label: "Explore",  active: true  },
-  { label: "Library",  active: false },
+  {/*{ label: "Library",  active: false },
   { label: "Rankings", active: false },
-  { label: "Support",  active: false },
+  { label: "Support",  active: false },*/}
 ];
 
 export default function Navbar() {
@@ -38,7 +38,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Right — actions + avatar */}
+        {/* Right — actions + avatar
         <div className="flex items-center gap-6">
           {["notifications", "settings"].map((icon) => (
             <button
@@ -58,7 +58,7 @@ export default function Navbar() {
               className="object-cover w-full h-full"
             />
           </div>
-        </div>
+        </div>*/}
       </div>
     </nav>
   );

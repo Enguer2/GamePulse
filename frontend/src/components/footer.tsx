@@ -1,4 +1,4 @@
-const FOOTER_LINKS = ["Privacy Policy", "Terms of Service", "API Docs", "Careers"];
+ {/*const FOOTER_LINKS = ["Privacy Policy", "Terms of Service", "API Docs", "Careers"];*/}
 const FOOTER_ICONS = ["share", "public"];
 
 export default function Footer() {
@@ -17,11 +17,11 @@ export default function Footer() {
             className="text-xs tracking-tight text-slate-500"
             style={{ fontFamily: "var(--font-body)" }}
           >
-            © 2026 GAME PULSE. THE ETHEREAL HUD.
+            © 2026 GAME PULSE.
           </p>
         </div>
 
-        {/* Links */}
+        {/* Links 
         <div className="flex flex-wrap justify-center gap-8">
           {FOOTER_LINKS.map((link) => (
             <a
@@ -33,7 +33,7 @@ export default function Footer() {
               {link}
             </a>
           ))}
-        </div>
+        </div>*/}
 
         {/* Social icons & GitHub Link */}
         <div className="flex gap-4 items-center">
