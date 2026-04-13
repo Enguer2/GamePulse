@@ -1,8 +1,8 @@
 import MosaicBackground  from "@/components/mosaicbackground";
 import Navbar            from "@/components/navbar";
-import HeroSection       from "@/components/herooesection"; // Remarque l'orthographe exacte du fichier avec "oo"
+import HeroSection       from "@/components/herooesection";
 import FeatureCards      from "@/components/featurecards";
-import InsightsSection   from "@/components/insightssection";
+import InsightsSection   from "@/components/insightssection"; // in coming
 import Footer            from "@/components/footer";
 
 export default function Home() {
@@ -14,7 +14,6 @@ export default function Home() {
         <MosaicBackground />
         <HeroSection />
         <FeatureCards />
-        <InsightsSection />
       </main>
 
       <Footer />
