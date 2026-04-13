@@ -1,6 +1,19 @@
-# 🎮 GamePulse — Moteur de Recommandation Sémantique Steam
+# GamePulse — Moteur de Recommandation
 
 > Un moteur de recherche et de recommandation intelligent pour les jeux Steam, basé sur une architecture RAG (Retrieval-Augmented Generation) hybride, combinant NLP, bases de données vectorielles et modèles de Reranking.
+
+---
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-FFD21E?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-3178C6?style=for-the-badge)
+![Mistral AI](https://img.shields.io/badge/Mistral_AI-FF6000?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+### 🌍 **Live Demo:** [Here](https://game-pulse-7ndoj7wnq-enguer2s-projects.vercel.app/)
 
 ---
 
@@ -131,6 +144,19 @@ L'API sera accessible sur : http://localhost:8000.
 # 🎮 GamePulse — Semantic Steam Recommendation Engine
 
 > An intelligent search and recommendation engine for Steam games, based on a hybrid RAG (Retrieval-Augmented Generation) architecture, combining NLP, vector databases, and Reranking models.
+
+---
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-FFD21E?style=for-the-badge)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-3178C6?style=for-the-badge)
+![Mistral AI](https://img.shields.io/badge/Mistral_AI-FF6000?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+
+### 🌍 **Live Demo:** [Here](https://game-pulse-7ndoj7wnq-enguer2s-projects.vercel.app/)
 
 ---
 
