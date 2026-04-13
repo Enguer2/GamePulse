@@ -87,6 +87,8 @@ def gamepulse_search(user_query: str, collection, mistral_api_key: str = None,
             "tags": game_store[doc_id][0].get('Tags', 'N/A'), 
             "score": sigmoid_percentage(float(score)),
             "description": game_store[doc_id][1].split("DESC: ")[-1][:200]
+            "app_id": game_store[doc_id][0].get('AppID'), 
+            "header_image": game_store[doc_id][0].get('Header image')
         } for score, doc_id in ranked]
     
     return []
