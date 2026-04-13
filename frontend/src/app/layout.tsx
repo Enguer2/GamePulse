@@ -27,6 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning 
       className={`${spaceGrotesk.variable} ${manrope.variable} h-full`}
     >
       <head>
@@ -35,7 +36,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#10131a] text-[#e1e2eb]">
+      <body 
+        className="min-h-full flex flex-col bg-[#10131a] text-[#e1e2eb]"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>
