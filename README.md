@@ -13,7 +13,7 @@
 ![Mistral AI](https://img.shields.io/badge/Mistral_AI-FF6000?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-### 🌍 **Live Demo:** [Here](https://game-pulse-7ndoj7wnq-enguer2s-projects.vercel.app/)
+### 🌍 **Live Demo:** [Here](coming soon)
 
 ---
 
